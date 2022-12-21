@@ -1,0 +1,5 @@
+ease graph
+
+beizer curves
+
+벡터가 방향만 가지는값 = normalize

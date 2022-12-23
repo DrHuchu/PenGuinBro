@@ -29,7 +29,11 @@ public:
 	UPROPERTY(Editanywhere, BlueprintReadWrite, Category = BombSettings)
 	class UStaticMeshComponent* meshComp;
 
+	UPROPERTY(EditInstanceOnly, Category = BombSetting)
+	float explosionTime = 1;
+
 private:
 	FVector direction;
 
+	float currentTime = 0;
 };

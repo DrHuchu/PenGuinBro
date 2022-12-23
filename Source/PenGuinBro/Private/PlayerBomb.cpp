@@ -17,13 +17,22 @@ APlayerBomb::APlayerBomb()
 void APlayerBomb::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void APlayerBomb::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	//경과된 시간을 누적
+	currentTime += DeltaTime;
 
+	if (currentTime > explosionTime)
+	{
+		Destroy();
+
+		//누적된 시간을 다시 0으로 초기화
+		currentTime = 0;
+	}
 }
 

@@ -4,16 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "PlayerPenGuin.generated.h"
+#include "InputActionValue.h"
+#include "PlayerPenguin.generated.h"
 
 UCLASS()
-class PENGUINBRO_API APlayerPenGuin : public ACharacter
+class PENGUINBRO_API APlayerPenguin : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
-	APlayerPenGuin();
+	APlayerPenguin();
 
 protected:
 	// Called when the game starts or when spawned
@@ -25,5 +26,40 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
+	TSubclassOf<class APlayerBomb> bombFactory;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
+	float moveSpeed = 200;
+	
+	UPROPERTY(EditDefaultsOnly, Category=PlayerSettings)
+	class UInputAction* ia_Horizental;
+
+	UPROPERTY(EditDefaultsOnly, Category=PlayerSettings)
+	class UInputAction* ia_Up;
+
+	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	class UInputAction* ia_Down;
+
+	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	class UInputAction* ia_BombDrop;
+
+	float H;
+
+	FVector direction;
+
+private:
+	UFUNCTION(BlueprintCallable)
+	void Horizental(float val);
+
+	UFUNCTION(BlueprintCallable)
+	void Up();
+
+	UFUNCTION(BlueprintCallable)
+	void Down();
+
+	UFUNCTION(BlueprintCallable)
+	void BombDrop();
 
 };

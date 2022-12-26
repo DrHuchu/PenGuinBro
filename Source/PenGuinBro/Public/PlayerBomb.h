@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/BoxComponent.h"
 #include "PlayerBomb.generated.h"
 
 UCLASS()
@@ -24,7 +25,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(Editanywhere, BlueprintReadWrite, Category = BombSettings)
-	class USphereComponent* sphereComp;
+	class UBoxComponent* boxComp;
+	
+	UPROPERTY(Editanywhere, BlueprintReadWrite, Category = BombSettings)
+	class UBoxComponent* boxComp1;
 
 	UPROPERTY(Editanywhere, BlueprintReadWrite, Category = BombSettings)
 	class UStaticMeshComponent* meshComp;
@@ -32,8 +36,13 @@ public:
 	UPROPERTY(EditInstanceOnly, Category = BombSetting)
 	float explosionTime = 1;
 
+	UFUNCTION(BlueprintCallable)
+	void SetBoxExtent(FVector (100, 50, 50));
+
 private:
 	FVector direction;
 
 	float currentTime = 0;
+
+	float spawnTime = 1;
 };

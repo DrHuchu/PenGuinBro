@@ -36,8 +36,8 @@ public:
 	UPROPERTY(EditInstanceOnly, Category = BombSetting)
 	float explosionTime = 1;
 
-	UPROPERTY(Editanywhere, BlueprintReadWrite, Category = BombSettings)
-	FVector boxSize;
+	UFUNCTION(BlueprintCallable)
+	void SetBoxExtent(FVector (100, 50, 50));
 
 private:
 	FVector direction;

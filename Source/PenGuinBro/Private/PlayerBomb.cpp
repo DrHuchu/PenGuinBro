@@ -37,16 +37,16 @@ void APlayerBomb::Tick(float DeltaTime)
 
 	if (currentTime > explosionTime)
 	{
-
-		boxComp1->SetBoxExtent(boxSize);
-		UE_LOG(LogTemp, Warning, TEXT("%d"), boxComp1);
-		
 		Destroy();
 
 		//누적된 시간을 다시 0으로 초기화
-		currentTime = 0;
-
-		
+		currentTime = 0;	
 	}
-		
+	else if (currentTime > spawnTime)
+	{
+
+	}
+	
 }
+//boxComp1->SetBoxExtent(boxSize);
+//UE_LOG(LogTemp, Warning, TEXT("%d"), boxComp1);

@@ -24,5 +24,9 @@ void ABombRange::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	
+
+
+
 }
 

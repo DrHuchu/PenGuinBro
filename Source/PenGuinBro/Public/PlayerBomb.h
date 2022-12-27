@@ -36,9 +36,12 @@ public:
 	UPROPERTY(EditInstanceOnly, Category = BombSetting)
 	float explosionTime = 1;
 
+<<<<<<< Updated upstream
 	UFUNCTION(BlueprintCallable)
 	void SetBoxExtent(FVector (100, 50, 50));
 
+=======
+>>>>>>> Stashed changes
 private:
 	FVector direction;
 

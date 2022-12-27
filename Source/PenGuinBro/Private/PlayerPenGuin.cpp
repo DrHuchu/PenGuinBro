@@ -6,6 +6,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "PlayerBomb.h"
+#include "RotatingFloor.h"
 
 
 // Sets default values
@@ -13,6 +14,10 @@ APlayerPenguin::APlayerPenguin()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	boxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collision"));
+	boxComp->SetupAttachment(RootComponent);
+	boxComp->SetBoxExtent(FVector(5.0f));
+
 
 }
 
@@ -21,6 +26,7 @@ void APlayerPenguin::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	boxComp->OnComponentBeginOverlap.AddDynamic(this, &APlayerPenguin::RotatingOverlap);
 }
 
 // Called every frame
@@ -39,6 +45,17 @@ void APlayerPenguin::Tick(float DeltaTime)
 void APlayerPenguin::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+}
+
+void APlayerPenguin::RotatingOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	//플레이어의 정수리 박스에 부딪힌게 회전발판이면
+	ARotatingFloor* rotFloor = Cast<ARotatingFloor>(OtherActor);
+
+	if (rotFloor != nullptr) {
+		UE_LOG(LogTemp, Warning, TEXT("Overlap!"));
+	}
+
 }
 
 void APlayerPenguin::Horizental(float value)
